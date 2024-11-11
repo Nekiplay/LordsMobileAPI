@@ -31,10 +31,18 @@ namespace Test
         private ActiveCoroutine myRoutine1;
         private ActiveCoroutine myRoutine2;
 
+        Process[] game = null;
+        LordsMobile lordsMobile = null;
         public SampleOverlay()
         {
             myRoutine1 = CoroutineHandler.Start(TickServiceAsync(), name: "MyRoutine-1");
             myRoutine2 = CoroutineHandler.Start(EventServiceAsync(), name: "MyRoutine-2");
+
+            game = Process.GetProcessesByName("Lords Mobile");
+            if (game.Length == 1)
+            {
+                lordsMobile = new LordsMobile(game[0]);
+            }
         }
 
         private IEnumerator<Wait> TickServiceAsync()
@@ -68,12 +76,9 @@ namespace Test
             {
                 CoroutineHandler.RaiseEvent(myevent);
             }
-            Process[] game = Process.GetProcessesByName("Lords Mobile");
-            if (game.Length == 1)
+            if (lordsMobile != null)
             {
                 ImGui.Begin("Neki_play Engine for Lords Mobile", ref isRunning, ImGuiWindowFlags.AlwaysAutoResize);
-
-                LordsMobile lordsMobile = new LordsMobile(game[0]);
                 ImGui.Text("Power: " + lordsMobile.user.power);
                 ImGui.Text("Gems: " + lordsMobile.user.gems);
                 ImGui.Text("Stamina: " + lordsMobile.user.stamina);
@@ -89,10 +94,6 @@ namespace Test
                 {
                     Close();
                 }
-            }
-            else
-            {
-                first = false;
             }
         }
     }
