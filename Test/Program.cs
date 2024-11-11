@@ -9,6 +9,7 @@ namespace Test // Note: actual namespace depends on the project name.
         {
             using var overlay = new SampleOverlay();
             overlay.Run();
+            while (true) { }
         }
     }
 }

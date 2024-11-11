@@ -9,7 +9,7 @@
         public static int[] energy = new int[] { 0x570 };
         public static int[] armyStatus = new int[] { 0xE44 };
 
-        public static int[] resourceinfo = new int[] { 0x03F46B28, 0x2E8, 0xF70, 0xDA8, 0x568 };
+        public static int[] resourceinfo = new int[] { 0x03E065D0, 0xB8, 0x20, 0xF8, 0x568 };
         public static int[] gold = new int[] { 0x60 };
         public static int[] ore = new int[] { 0xB0 };
         public static int[] wood = new int[] { 0x100 };

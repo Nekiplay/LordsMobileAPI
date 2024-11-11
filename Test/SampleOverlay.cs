@@ -62,6 +62,7 @@ namespace Test
         protected override void Render()
         {
             // Render
+            Size = new System.Drawing.Size(1680, 1050);
             CoroutineHandler.Tick(ImGui.GetIO().DeltaTime);
             if (data % 5 == 1)
             {
@@ -78,11 +79,11 @@ namespace Test
                 ImGui.Text("Stamina: " + lordsMobile.user.stamina);
                 ImGui.Text("Energy: " + lordsMobile.user.energy);
                 ImGui.Separator();
-                ImGui.Text("Gold: " + Math.Round(lordsMobile.resources.gold, 2));
-                ImGui.Text("Ore: " + Math.Round(lordsMobile.resources.ore, 2));
-                ImGui.Text("Stone: " + Math.Round(lordsMobile.resources.stone, 2));
-                ImGui.Text("Wood: " + Math.Round(lordsMobile.resources.wood, 2));
-                ImGui.Text("Food: " + Math.Round(lordsMobile.resources.food, 2));
+                ImGui.Text("Gold: " + Math.Round(lordsMobile.resources.gold, 0));
+                ImGui.Text("Ore: " + Math.Round(lordsMobile.resources.ore, 0));
+                ImGui.Text("Stone: " + Math.Round(lordsMobile.resources.stone, 0));
+                ImGui.Text("Wood: " + Math.Round(lordsMobile.resources.wood, 0));
+                ImGui.Text("Food: " + Math.Round(lordsMobile.resources.food, 0));
                 ImGui.End();
                 if (!isRunning)
                 {
