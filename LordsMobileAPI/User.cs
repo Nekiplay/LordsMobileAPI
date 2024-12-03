@@ -21,54 +21,58 @@ namespace LordsMobileAPI
         public User(LordsMobile lordsMobile)
         {
             this.processSharp = lordsMobile.GetProcessSharp();
-            userAddres = processSharp.Memory.Read<nint>(Utils.ReadOffset(lordsMobile.modules.GameAssembly, Offsets.userinfo, processSharp));
-            this.staminaAddres = Utils.ReadOffset(userAddres, Offsets.stamina, processSharp);
-            this.gemsAddres = Utils.ReadOffset(userAddres, Offsets.gems, processSharp);
-            this.powerAddres = Utils.ReadOffset(userAddres, Offsets.power, processSharp);
-            this.energyAddres = Utils.ReadOffset(userAddres, Offsets.energy, processSharp);
+            try
+            {
+                userAddres = processSharp.Memory.Read<nint>(Utils.ReadOffset(lordsMobile.modules.GameAssembly, lordsMobile.ofsetts.GetUserInfo(), processSharp));
+                this.staminaAddres = Utils.ReadOffset(userAddres, lordsMobile.ofsetts.GetStamina(), processSharp);
+                this.gemsAddres = Utils.ReadOffset(userAddres, lordsMobile.ofsetts.GetGems(), processSharp);
+                this.powerAddres = Utils.ReadOffset(userAddres, lordsMobile.ofsetts.GetPower(), processSharp);
+                this.energyAddres = Utils.ReadOffset(userAddres, lordsMobile.ofsetts.GetEnergy(), processSharp);
+            }
+            catch { }
         }
         public int power
         {
             get
             {
-                return processSharp.Memory.Read<int>(powerAddres);
+                try { return processSharp.Memory.Read<int>(powerAddres); } catch { return 0;  }
             }
             set
             {
-                processSharp.Memory.Write<int>(powerAddres, value); // Visual only
+                try { processSharp.Memory.Write<int>(powerAddres, value); } catch { } // Visual only
             }
         }
         public int energy
         {
             get
             {
-                return processSharp.Memory.Read<int>(energyAddres);
+                try { return processSharp.Memory.Read<int>(energyAddres); } catch { return 0;  }
             }
             set
             {
-                processSharp.Memory.Write<int>(energyAddres, value); // Visual only
+                try { processSharp.Memory.Write<int>(energyAddres, value); } catch { } // Visual only
             }
         }
         public int gems
         {
             get
             {
-                return processSharp.Memory.Read<int>(gemsAddres);
+                try { return processSharp.Memory.Read<int>(gemsAddres); } catch { return 0;  }
             }
             set
             {
-                processSharp.Memory.Write<int>(gemsAddres, value); // Visual only
+                try { processSharp.Memory.Write<int>(gemsAddres, value); } catch { } // Visual only
             }
         }
         public int stamina
         {
             get
             {
-                return processSharp.Memory.Read<int>(staminaAddres);
+                try { return processSharp.Memory.Read<int>(staminaAddres); } catch { return 0;  }
             }
             set
             {
-                processSharp.Memory.Write<int>(staminaAddres, value); // Visual only
+                try { processSharp.Memory.Write<int>(staminaAddres, value); } catch { } // Visual only
             }
         }
     }

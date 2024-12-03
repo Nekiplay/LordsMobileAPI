@@ -11,12 +11,14 @@ namespace LordsMobileAPI
     {
         private System.Diagnostics.Process _process;
         private ProcessSharp _processSharp;
+        public readonly IOffsets ofsetts;
         public Modules modules;
 
         public User user;
         public Resources resources;
-        public LordsMobile(System.Diagnostics.Process process)
+        public LordsMobile(System.Diagnostics.Process process, IOffsets ofsetts)
         {
+            this.ofsetts = ofsetts;
             this._process = process;
             this._processSharp = new ProcessSharp(_process, Process.NET.Memory.MemoryType.Remote);
 

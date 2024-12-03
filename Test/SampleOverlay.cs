@@ -41,7 +41,15 @@ namespace Test
             game = Process.GetProcessesByName("Lords Mobile");
             if (game.Length == 1)
             {
-                lordsMobile = new LordsMobile(game[0]);
+                lordsMobile = new LordsMobile(game[0], ofsetts: new OffsetsSteam());
+            }
+            else if (game.Length == 0)
+            {
+                game = Process.GetProcessesByName("Lords Mobile PC");
+                if (game.Length == 1)
+                {
+                    lordsMobile = new LordsMobile(game[0], ofsetts: new OffsetsPC());
+                }
             }
         }
 
